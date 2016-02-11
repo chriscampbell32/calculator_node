@@ -7,9 +7,29 @@
 
 var express = require('express');
 var app = express();
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
+
+app.get('/:operation/:firstNumber/:secondNumber', function(req, res){
+var operation = req.params.operation;
+var firstNumber = parseInt(req.params.firstNumber);
+var secondNumber = parseInt(req.params.secondNumber);
+var value = 0;
 
 
+if(operation === "addition"){
+    value = firstNumber + secondNumber;
+    res.send("<p>" + value + "</p>");
+} else if(operation === "subtraction"){
+   value = firstNumber - secondNumber;
+   res.send("<p>" + value + "</p>");
+} else if(operation === "multiplication"){
+    value = firstNumber * secondNumber;
+    res.send("<p>" + value + "</p>");
+} else if(operation === "division") {
+   value = firstNumber / secondNumber;
+   res.send("<p>" + value + "</p>");
+}
+});
 
 
 
